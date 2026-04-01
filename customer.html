@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IEU CRM</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="sidebar" id="sidebar-target">Sedang memuat menu...</div>
+
+      <div id="content">
+        <h1>Data Customer</h1>
+        <p>Gunakan tabel di bawah untuk mengelola kontak kantor.</p>
+
+        <table class="crm-table">
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Perusahaan</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Budi Sudarsono</td>
+              <td>PT Maju Jaya</td>
+              <td><span class="badge-hot">Hot Lead</span></td>
+              <td><button class="btn-edit">Edit</button></td>
+            </tr>
+            <tr>
+              <td>Susi Susanti</td>
+              <td>CV Abadi</td>
+              <td><span class="badge-cold">Cold Lead</span></td>
+              <td><button class="btn-edit">Edit</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

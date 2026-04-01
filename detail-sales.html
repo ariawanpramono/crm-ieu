@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IEU CRM</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="sidebar" id="sidebar-target">
+        Sedang memuat menu...
+      </div>
+
+
+      <!-- Isi content -->
+    <div id="content">
+    <div class="sales-profile-card">
+        <img src="https://via.placeholder.com/100" class="profile-img-large" alt="Foto Budi">
+        <div class="sales-details">
+            <h1>Budi Santoso</h1>
+            <p class="nip-text">NIP: 202401001</p>
+            <div class="sales-tags">
+                <span class="badge signed">Senior Sales</span>
+                <span class="region-tag">📍 Region Jakarta</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary-cards">
+        <div class="card">
+            <h3>12</h3>
+            <p>Total Sekolah di-Approach</p>
+        </div>
+        <div class="card">
+            <h3>4</h3>
+            <p>Status: Signed</p>
+        </div>
+        <div class="card">
+            <h3>8</h3>
+            <p>Status: Prospect</p>
+        </div>
+    </div>
+
+    <div class="table-section">
+        <h3>List Approach Sekolah</h3>
+        <div class="table-container">
+            <table class="crm-table">
+                <thead>
+                    <tr>
+                        <th>No. Induk</th>
+                        <th>Nama Sekolah</th>
+                        <th>Status</th>
+                        <th>Update Terakhir</th>
+                        <th>Next Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SCH-001</td>
+                        <td><a href="detail-sekolah.html?id=SCH-001" class="link-detail">SMA Negeri 1 Jakarta</a></td>
+                        <td><span class="badge signed">Signed</span></td>
+                        <td>25 Mar 2024</td>
+                        <td>✅ Penyerahan Dokumen</td>
+                    </tr>
+                    <tr>
+                        <td>SCH-005</td>
+                        <td><a href="detail-sekolah.html?id=SCH-005" class="link-detail">SMA Taruna Jaya</a></td>
+                        <td><span class="badge hot">Hot Prospect</span></td>
+                        <td>28 Mar 2024</td>
+                        <td>📅 Jadwalkan Presentasi</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>✏️ Edit Data Sekolah</h2>
+        <hr>
+        <form id="editForm">
+            <label>Nama Sekolah:</label>
+            <input type="text" id="editNama" value="SMA Negeri 1 Jakarta">
+            
+            <label>Status:</label>
+            <select id="editStatus">
+                <option value="hot">Hot Prospect</option>
+                <option value="signed">Signed</option>
+            </select>
+            
+            <label>Sales PIC:</label>
+            <input type="text" id="editSales" value="Budi Santoso">
+
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel">Batal</button>
+                <button type="submit" class="btn-save">Simpan Perubahan</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+    <script src="script.js"></script>
+  </body>
+</html>
