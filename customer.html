@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IEU CRM</title>
+    <title>CRM - Kelolaan Sekolah</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -11,35 +11,219 @@
       <div class="sidebar" id="sidebar-target">Sedang memuat menu...</div>
 
       <div id="content">
-        <h1>Data Customer</h1>
-        <p>Gunakan tabel di bawah untuk mengelola kontak kantor.</p>
+        <div class="header-dashboard">
+          <h1>Kelolaan Sekolah</h1>
+          <p>Daftar seluruh sekolah yang sedang dikelola</p>
+        </div>
 
-        <table class="crm-table">
-          <thead>
-            <tr>
-              <th>Nama</th>
-              <th>Perusahaan</th>
-              <th>Status</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Budi Sudarsono</td>
-              <td>PT Maju Jaya</td>
-              <td><span class="badge-hot">Hot Lead</span></td>
-              <td><button class="btn-edit">Edit</button></td>
-            </tr>
-            <tr>
-              <td>Susi Susanti</td>
-              <td>CV Abadi</td>
-              <td><span class="badge-cold">Cold Lead</span></td>
-              <td><button class="btn-edit">Edit</button></td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- Filter & Tombol Tambah -->
+        <div class="table-header">
+          <div class="filter-group">
+            <select id="filterStatus" onchange="filterTable()">
+              <option value="all">Semua Status</option>
+              <option value="hot">Hot Prospect</option>
+              <option value="signed">Signed</option>
+              <option value="approach">Initial Approach</option>
+            </select>
+            <input type="text" id="searchSekolah" placeholder="🔍 Cari nama sekolah..." oninput="filterTable()">
+          </div>
+          <button class="btn-tambah" onclick="openAddModal()">+ Tambah Sekolah</button>
+        </div>
+
+        <!-- Tabel Sekolah -->
+        <div class="table-container">
+          <table class="crm-table">
+            <thead>
+              <tr>
+                <th>No. Induk</th>
+                <th style="width: 30%;">Nama Sekolah</th>
+                <th>Tipe</th>
+                <th>Status</th>
+                <th>Sales PIC</th>
+                <th>RM</th>
+                <th class="action-column">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="customerTableBody">
+  <!-- <tr>
+    <td>SCH-001</td>
+    <td><a href="javascript:void(0)" onclick="openSchoolDetail('SCH-001')" class="link-detail">SMA Negeri 1 Jakarta</a></td>
+    <td>Nasional / Negeri</td>
+    <td><span class="badge signed">Signed</span></td>
+    <td><a href="javascript:void(0)" onclick="openSalesDetail('Budi')" class="link-user">Budi Santoso</a></td>
+    <td>Andi Wijaya</td>
+    <td class="action-column">
+      <button class="btn-edit-icon" onclick="openEditModal()">✏️</button>
+    </td>
+  </tr>
+  <tr>
+    <td>SCH-002</td>
+    <td><a href="javascript:void(0)" onclick="openSchoolDetail('SCH-002')" class="link-detail">SMA Taruna Jaya</a></td>
+    <td>Islam</td>
+    <td><span class="badge hot">Hot Prospect</span></td>
+    <td><a href="javascript:void(0)" onclick="openSalesDetail('Budi')" class="link-user">Budi Santoso</a></td>
+    <td>Andi Wijaya</td>
+    <td class="action-column">
+      <button class="btn-edit-icon" onclick="openEditModal()">✏️</button>
+    </td>
+  </tr> -->
+</tbody>
+          </table>
+
+          <!-- Modal Edit -->
+<!-- Modal Edit -->
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeEditModal()">&times;</span>
+    <h2>✏️ Edit Data Sekolah</h2>
+    <hr>
+    <form id="editForm">  <!-- INI YANG HARUS DIGANTI -->
+      <label>No. Induk Sekolah:</label>
+      <input type="text" id="editID" readonly>
+
+      <label>Nama Sekolah:</label>
+      <input type="text" id="editNama">
+
+      <label>Status:</label>
+      <select id="editStatus">
+        <option value="hot">Hot Prospect</option>
+        <option value="signed">Signed</option>
+        <option value="approach">Initial Approach</option>
+      </select>
+
+      <label>Sales PIC:</label>
+      <input type="text" id="editSales">
+
+      <label>RM:</label>
+      <input type="text" id="editRM">
+
+      <div class="modal-footer">
+        <button type="button" class="btn-cancel" onclick="closeEditModal()">Batal</button>
+        <button type="submit" class="btn-save">Simpan Perubahan</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Detail Sales -->
+<div id="salesModal" class="modal">
+  <div class="modal-content modal-large">
+    <span class="close-btn" onclick="closeSalesModal()">&times;</span>
+
+    <div class="sales-profile-popup">
+      <img src="assets/image/pp2.jpg" class="profile-img-large" id="popSalesFoto">
+      <div class="sales-info">
+        <h2 id="popSalesNama">Nama Sales</h2>
+        <p id="popSalesNIP">NIP: -</p>
+        <span class="badge signed" id="popSalesLevel">Senior Sales</span>
       </div>
     </div>
+
+    <hr>
+
+    <h3>List Kelolaan Sekolah</h3>
+    <div class="table-container shadow-none">
+      <table class="crm-table small-font">
+        <thead>
+          <tr>
+            <th>Nama Sekolah</th>
+            <th>Status</th>
+            <th>Next Action</th>
+          </tr>
+        </thead>
+        <tbody id="popSalesTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Detail Sekolah -->
+<div id="schoolModal" class="modal">
+  <div class="modal-content modal-large">
+    <span class="close-btn" onclick="closeSchoolModal()">&times;</span>
+
+    <div class="modal-header-styled">
+      <h2 id="popSchoolNama">Nama Sekolah</h2>
+      <p id="popSchoolID" class="nip-text">ID: -</p>
+    </div>
+
+    <hr>
+
+    <div class="modal-grid">
+      <div class="grid-col">
+        <p><strong>🏫 Tipe Sekolah:</strong> <span id="popSchoolTipe">-</span></p>
+        <p><strong>📍 Lokasi (Kota):</strong> <span id="popSchoolKota">-</span></p>
+        <p><strong>🏠 Alamat:</strong> <span id="popSchoolAlamat">-</span></p>
+        <p><strong>🏢 Yayasan:</strong> <span id="popSchoolYayasan">-</span></p>
+        <p><strong>🎓 Kepala Sekolah:</strong> <span id="popSchoolKepsek">-</span></p>
+        <p><strong>📞 Kontak PIC:</strong> <span id="popSchoolPIC">-</span></p>
+      </div>
+
+      <div class="grid-col highlight-box">
+        <h4>Status Kerjasama</h4>
+        <p><strong>Status:</strong> <span id="popSchoolStatus" class="badge">-</span></p>
+        <p><strong>Jumlah Siswa:</strong> <span id="popSchoolSiswa">0</span> Siswa</p>
+        <p><strong>Cakupan Join:</strong> <span id="popSchoolCakupan">-</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Tambah Sekolah -->
+<div id="addModal" class="modal">
+  <div class="modal-content modal-large">
+    <span class="close-btn" onclick="closeAddModal()">&times;</span>
+    <h2>🆕 Daftarkan Sekolah Baru</h2>
+    <hr>
+    <form id="addSchoolForm">
+      <div class="modal-grid">
+        <div class="grid-col">
+          <label style="color: #d9534f;">Nomor Induk Sekolah (Primary Key):</label>
+          <input type="text" id="addID" placeholder="Contoh: SCH-2024-001" required style="border: 2px solid #d9534f; font-weight: bold;">
+
+          <label>Nama Sekolah:</label>
+          <input type="text" id="addNama" placeholder="Contoh: SMA Negeri 1" required>
+
+          <label>Tipe Sekolah:</label>
+          <select id="addTipe">
+            <option value="Nasional / Negeri">Nasional / Negeri</option>
+            <option value="Islam">Islam</option>
+            <option value="Kristen">Kristen</option>
+            <option value="Katolik">Katolik</option>
+            <option value="Internasional / Plus">Internasional / Plus</option>
+          </select>
+        </div>
+
+        <div class="grid-col">
+          <label>Status Awal:</label>
+          <select id="addStatus">
+            <option value="hot">Hot Prospect</option>
+            <option value="approach">Initial Approach</option>
+            <option value="signed">Signed</option>
+          </select>
+
+          <label>Nama Kepala Sekolah:</label>
+          <input type="text" id="addKepsek" placeholder="Contoh: Drs. Ahmad">
+
+          <label>Kontak PIC (HP/Email):</label>
+          <input type="text" id="addPIC" placeholder="Nama - Nomor HP">
+
+          <label>Jumlah Siswa (Estimasi):</label>
+          <input type="text" id="addSiswa" placeholder="0" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-cancel" onclick="closeAddModal()">Batal</button>
+        <button type="submit" class="btn-save">Simpan ke Database</button>
+      </div>
+    </form>
+  </div>
+</div>
+        
+       </div>
+    </div>
+    
     <script src="script.js"></script>
   </body>
 </html>

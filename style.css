@@ -8,6 +8,43 @@
   padding: 20px;
 }
 
+.header-dashboard {
+  margin-bottom: 25px;
+}
+
+.header-dashboard h1 {
+  margin: 0;
+  font-size: 30px;
+  color: #333;
+}
+
+.header-dashboard p {
+  margin-top: 6px;
+  color: #777;
+  font-size: 14px;
+}
+
+.chart-section {
+  margin-top: 35px;
+}
+
+.chart-container {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+.table-container {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+
+
 /* Sidebar */
 .sidebar {
   width: 200px;
@@ -60,21 +97,10 @@
   display: block; /* Memastikan dia ambil baris sendiri */
 }
 
-.user-role {
-  font-size: 12px;
-  color: #888;
-}
-
 /* Info Teks */
 .user-info {
   display: flex;
   flex-direction: column;
-}
-
-.user-name-big {
-  font-weight: bold;
-  font-size: 16px;
-  color: #333;
 }
 
 .user-role {
@@ -121,21 +147,35 @@
 }
 
 /* Warna Status */
-.badge-hot {
-  background: #ff4d4d;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
+/* Warna Status - Sistem Baru */
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
   font-size: 12px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  min-width: 85px;
+  line-height: 1.2;
 }
 
-.badge-cold {
-  background: #4da6ff;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
+.badge.hot {
+  background: #f0ad4e;
 }
+
+.badge.signed {
+  background: #28a745;
+}
+
+.badge.approach {
+  background: #17a2b8;
+}
+
+.badge.cold {
+  background: #6c757d;
+}
+
 
 .btn-edit {
   cursor: pointer;
@@ -437,4 +477,19 @@
     color: #777;
     font-size: 14px;
     font-weight: 500;
+}
+
+/* Filter group di atas tabel */
+.filter-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.filter-group input,
+.filter-group select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
 }
