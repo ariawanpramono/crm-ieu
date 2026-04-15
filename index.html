@@ -1,93 +1,57 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CRM - Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-  <div id="wrapper">
-    <div class="sidebar" id="sidebar-target">Sedang memuat menu...</div>
-
-    <!-- Dashboard Analitik -->
-    <div id="content">
-      <div class="header-dashboard">
-        <h1>Dashboard Utama</h1>
-        <p>Ringkasan Data Sekolah & Prospek Terkini</p>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>CRM - Dashboard</title>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+      <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+      <div id="wrapper">
+      <div class="sidebar" id="sidebar-target">Sedang memuat menu...</div>
+      <!-- Dashboard Analitik -->
+      <div id="content">
+          <div class="header-dashboard">
+            <h1>Dashboard Utama</h1>
+            <p>Ringkasan Data Sekolah & Prospek Terkini</p>
+          </div>
+          <!-- Summary Cards (Tetap ada) -->
+          <div class="summary-container">
+            <div class="card card-signed">
+                <h3 id="signedCount">1</h3>
+                <p>Signed</p>
+            </div>
+            <div class="card card-hot">
+                <h3 id="hotCount">1</h3>
+                <p>Hot Prospect</p>
+            </div>
+            <div class="card card-approach">
+                <h3 id="approachCount">1</h3>
+                <p>Initial Approach</p>
+            </div>
+          </div>
+          <!-- Chart Section -->
+          <div class="chart-section">
+            <div class="table-header">
+                <h3>📊 Analisis Status Prospek</h3>
+            </div>
+            <!-- Pie Chart Placeholder -->
+            <div class="chart-container">
+                <canvas id="statusChart" width="400" height="400"></canvas>
+            </div>
+            <!-- Chart Map -->
+            <div class="table-header">
+                <h3>🏆 Sebaran Lokasi Sekolah</h3>
+            </div>
+            <div class="chart-container">
+                <div id="map" style="height: 400px; width: 100%; background: #eee; border-radius: 8px;">
+                </div>
+            </div>
+          </div>
       </div>
-
-      <!-- Summary Cards (Tetap ada) -->
-      <div class="summary-container">
-        <div class="card card-hot">
-          <h3 id="hotCount">15</h3>
-          <p>Hot Prospect</p>
-        </div>
-        <div class="card card-signed">
-          <h3 id="signedCount">8</h3>
-          <p>Signed (Deal)</p>
-        </div>
-        <div class="card card-total">
-          <h3 id="totalCount">32</h3>
-          <p>Total Approach</p>
-        </div>
-      </div>
-
-      <!-- Chart Section -->
-      <div class="chart-section">
-        <div class="table-header">
-          <h3>📊 Analisis Status Prospek</h3>
-        </div>
-
-        <!-- Pie Chart Placeholder -->
-        <div class="chart-container">
-          <canvas id="statusChart" width="400" height="400"></canvas>
-        </div>
-
-        <!-- Performa Sales -->
-        <div class="table-header">
-          <h3>🏆 Performa Sales Terbaik</h3>
-        </div>
-
-        <div class="table-container">
-          <table class="crm-table">
-            <thead>
-              <tr>
-                <th>Sales</th>
-                <th>Signed</th>
-                <th>Hot Prospect</th>
-                <th>Total Kelolaan</th>
-              </tr>
-            </thead>
-            <tbody id="salesPerformanceTable">
-              <tr>
-                <td><strong>Budi Santoso</strong></td>
-                <td><span class="badge signed">5</span></td>
-                <td><span class="badge hot">3</span></td>
-                <td>8</td>
-              </tr>
-              <tr>
-                <td>Andi Wijaya</td>
-                <td><span class="badge signed">2</span></td>
-                <td><span class="badge hot">4</span></td>
-                <td>6</td>
-              </tr>
-              <tr>
-                <td>Sari Lestari</td>
-                <td><span class="badge signed">1</span></td>
-                <td><span class="badge hot">2</span></td>
-                <td>3</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-
+      <script src="script.js"></script>
+    </body>
 </html>
